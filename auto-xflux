@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# auto-xflux
+# inputless xflux daemon that geocodes based on your external IP address
+
+# Copyright 2014 James An
+
+# THIS PROGRAM is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# get external IP address
+declare -r ADDR="`curl -s icanhazip.com`"
+
+# geocode IP address
+declare -r GEOCODE_URL="www.geocodeip.com"
+declare -r GEOCODE_PARAM="IP=$ADDR"
+declare -r HTML="`curl -s "${GEOCODE_URL}?${GEOCODE_PARAM}"`"
+
+# scrape coordinates from return HTML
+declare -r LAT="` echo "$HTML" | grep Latitude  | sed 's/.*Latitude[^0-9]*//;s/[^0-9]*\/tr.*//'`"
+declare -r LONG="`echo "$HTML" | grep Longitude | sed 's/.*Longitude[^0-9]*//;s/[^0-9]*\/tr.*//'`"
+
+# start xflux in daemon mode (forking)
+exec `which xflux` -l $LAT -g $LONG
