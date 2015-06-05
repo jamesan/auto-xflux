@@ -27,8 +27,8 @@ declare -r GEOCODE_PARAM="IP=$ADDR"
 declare -r HTML="`curl -s "${GEOCODE_URL}?${GEOCODE_PARAM}"`"
 
 # scrape coordinates from return HTML
-declare -r LAT="` echo "$HTML" | grep Latitude  | sed 's/.*Latitude[^0-9]*//;s/[^0-9]*\/tr.*//'`"
-declare -r LONG="`echo "$HTML" | grep Longitude | sed 's/.*Longitude[^0-9]*//;s/[^0-9]*\/tr.*//'`"
+declare -r LAT="` echo "$HTML" | grep Latitude  | sed 's/.*Latitude[^-0-9]*//;s/[^-0-9]*\/tr.*//'`"
+declare -r LONG="`echo "$HTML" | grep Longitude | sed 's/.*Longitude[^-0-9]*//;s/[^-0-9]*\/tr.*//'`"
 
 # start xflux in daemon mode (forking)
 exec `which xflux` -l $LAT -g $LONG
