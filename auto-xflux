@@ -18,8 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-LOCATION=`curl ipinfo.io | jq ".loc" | sed "s/\"//g"`
-LAT=`echo $LOCATION | cut -f 1 -d ","`
+LOCATION=$(curl --silent ipinfo.io | grep '"loc":' | cut --delimiter='"' --fields=4)
+LAT=`echo $LOCATION | cut -f 1 -d ","`z
 LNG=`echo $LOCATION | cut -f 2 -d ","`
 
 # start xflux in daemon mode (forking)
