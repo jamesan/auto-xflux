@@ -19,7 +19,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 LOCATION=$(curl --silent ipinfo.io | grep '"loc":' | cut --delimiter='"' --fields=4)
-LAT=`echo $LOCATION | cut -f 1 -d ","`z
+LAT=`echo $LOCATION | cut -f 1 -d ","`
 LNG=`echo $LOCATION | cut -f 2 -d ","`
 
 # start xflux in daemon mode (forking)
