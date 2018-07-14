@@ -23,4 +23,4 @@ LAT=`echo $LOCATION | cut -f 1 -d ","`
 LNG=`echo $LOCATION | cut -f 2 -d ","`
 
 # start xflux in daemon mode (forking)
-exec `which xflux` -l $LAT -g $LNG
+/usr/bin/xflux -l $LAT -g $LNG
