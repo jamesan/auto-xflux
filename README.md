@@ -15,7 +15,7 @@ This also obviously requires [xflux](https://justgetflux.com/linux.html) (to be 
 
 ### Arch Linux
 
-Installed the AUR package, [auto-xflux](aur.archlinux.org/packages/auto-xflux). The PKGBUILD can be viewed
+Installed the AUR package, [auto-xflux](https://aur.archlinux.org/packages/auto-xflux). The PKGBUILD can be viewed
 [here](https://github.com/jamesan/aur-pkgs/blob/master/auto-xflux/PKGBUILD).
 
 ### Other
